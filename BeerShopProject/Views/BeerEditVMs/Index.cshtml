@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BeerShopProject.Models.BeerEditVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container" ng-app="app" ng-controller="BeerController">
+    <div class="row">
+        <div class="col-md-8">
+
+            <h2>{{message}}</h2>
+            <br /><br />
+            <p>{{dataFromJson | json}}</p>
+            <h2>Index</h2>
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Color)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HasTried)
+                    </th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="beer in dataFromJson">
+                    <td>
+                        {{beer.Name}}
+                    </td>
+                    <td>
+                        {{beer.Color}}
+                    </td>
+                    <td>
+                        <input type="checkbox" disabled="disabled" ng-model="beer.HasTried" />Have Tasted
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit","BeerEditVMs")/?id={{beer.id}}"><i class="glyphicon glyphicon-align-left glyphicon-edit"></i></a>   @*Edit is method BeerEditVMs is controller*@
+                        <a href="@Url.Action("Delete","BeerEditVMs")/?id={{beer.id}}"><i class="glyphicon glyphicon-align-left glyphicon-minus"></i></a>
+                        <a href="@Url.Action("Details","BeerEditVMs")/?id={{beer.id}}"><i class="glyphicon glyphicon-align-left glyphicon-info-sign"></i></a>
+                    </td>
+                </tr>
+                <tr ng-if="showOrNotAtFirst">
+                    <td>
+                        <input type="text" class="form-control" placeholder="Name" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Color" />
+                    </td>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" />Have Tasted
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-default" ng-click="showOrNot(false)">Cancel</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a ng-click="showOrNot(true)" class="btn btn-primary">Add Beer</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
