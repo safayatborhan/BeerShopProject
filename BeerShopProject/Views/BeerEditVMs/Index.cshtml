@@ -58,7 +58,10 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" ng-click="addBeer()">Add</button>
+                        @*here loading button directive is custom made in app.js.but you see the name of the directive
+                        is loadingButton. we used here loading-button. angular can understand this and removes the -
+                        spin="isAdding is the true or false property to start and end the loading spin"*@
+                        <button type="button" class="btn btn-primary ladda-button" ng-click="addBeer()" spin="isAdding" loading-button data-style="expand-left">Add</button>
                         <button type="button" class="btn btn-default" ng-click="showOrNot(false)">Cancel</button>
                     </td>
                 </tr>

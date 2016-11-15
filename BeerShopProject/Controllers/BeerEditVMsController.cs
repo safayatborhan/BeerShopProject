@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BeerShopProject.Models;
+using System.Threading;
 
 namespace BeerShopProject.Controllers
 {
@@ -30,6 +31,7 @@ namespace BeerShopProject.Controllers
         [HttpPost]
         public ActionResult AddBearIntoDB(BeerEditVM model)
         {
+            Thread.Sleep(2000);    //To demonstrate spinnig easily
             var beer = new BeerEditVM();
             beer.Name = model.Name;
             beer.Color = model.Color;

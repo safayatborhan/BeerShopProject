@@ -21,10 +21,15 @@
     //for posting data into server side
     $scope.beer = {}; //The reason of using the curly bracket is to store json object, I suppose. It's my hypothesis
     $scope.addBeer = function () {
+        $scope.isAdding = true;  //this will start the spinning
         $http.post('/BeerEditVMs/AddBearIntoDB', $scope.beer).success(function (data) {
             //$scope.dataFromJson.Beers.push(data);
+            $scope.isAdding = false;  //this will stop the spinning
             $scope.dataFromJson.push(data);
             $scope.beer = {};
         })
     };
+
+    //This variable makes a condition when the loading spin will start and when end
+    $scope.isAdding = false;
 });
