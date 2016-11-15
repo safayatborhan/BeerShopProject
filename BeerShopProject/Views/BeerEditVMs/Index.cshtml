@@ -47,24 +47,29 @@
                 </tr>
                 <tr ng-if="showOrNotAtFirst">
                     <td>
-                        <input type="text" class="form-control" placeholder="Name" />
+                        <input type="text" class="form-control" placeholder="Name" ng-model="beer.Name" />
                     </td>
                     <td>
-                        <input type="text" class="form-control" placeholder="Color" />
+                        <input type="text" class="form-control" placeholder="Color" ng-model="beer.Color" />
                     </td>
                     <td>
                         <div class="checkbox">
-                            <input type="checkbox" />Have Tasted
+                            <input type="checkbox" ng-model="beer.HasTried" />Have Tasted
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-primary" ng-click="addBeer()">Add</button>
                         <button type="button" class="btn btn-default" ng-click="showOrNot(false)">Cancel</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a ng-click="showOrNot(true)" class="btn btn-primary">Add Beer</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        {{beer | json}}
                     </td>
                 </tr>
             </table>

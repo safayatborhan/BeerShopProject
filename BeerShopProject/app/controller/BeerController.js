@@ -17,4 +17,14 @@
         .success(function (data) {
             $scope.dataFromJson = data;
         });
+
+    //for posting data into server side
+    $scope.beer = {}; //The reason of using the curly bracket is to store json object, I suppose. It's my hypothesis
+    $scope.addBeer = function () {
+        $http.post('/BeerEditVMs/AddBearIntoDB', $scope.beer).success(function (data) {
+            //$scope.dataFromJson.Beers.push(data);
+            $scope.dataFromJson.push(data);
+            $scope.beer = {};
+        })
+    };
 });

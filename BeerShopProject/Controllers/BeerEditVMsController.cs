@@ -26,6 +26,22 @@ namespace BeerShopProject.Controllers
             return Json(db.BeerDB.ToList(),JsonRequestBehavior.AllowGet);
         }
 
+        //a method for posting json data into server side
+        [HttpPost]
+        public ActionResult AddBearIntoDB(BeerEditVM model)
+        {
+            var beer = new BeerEditVM();
+            beer.Name = model.Name;
+            beer.Color = model.Color;
+            beer.HasTried = model.HasTried;        
+            if(ModelState.IsValid)
+            {
+                db.BeerDB.Add(beer);
+                db.SaveChanges();
+            }
+            return Json(beer, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: BeerEditVMs/Details/5
         public ActionResult Details(int? id)
         {
